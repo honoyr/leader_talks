@@ -1,0 +1,25 @@
+<nb-card>
+<!--<div class="test">-->
+
+
+  <nb-list
+    nbInfiniteList
+    listenWindowScroll
+    [threshold]="500"
+    (bottomThreshold)="loadNext()">
+<!--    <nb-layout-column>-->
+<!--    <nb-card>-->
+<!--      <nb-card-body>-->
+      <nb-list-item *ngFor="let newsPost of news">
+      <nb-news-post [post$]="newsPost"></nb-news-post>
+    </nb-list-item>
+      <nb-list-item *ngFor="let _ of placeholders">
+        <nb-news-post-placeholder></nb-news-post-placeholder>
+      </nb-list-item>
+<!--      </nb-card-body>-->
+<!--    </nb-card>-->
+<!--    </nb-layout-column>-->
+
+  </nb-list>
+</nb-card>
+<!--</div>-->

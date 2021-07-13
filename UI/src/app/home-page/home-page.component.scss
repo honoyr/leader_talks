@@ -1,0 +1,43 @@
+
+:host nb-layout-header ::ng-deep nav {
+  justify-content: space-between;
+}
+
+.container {
+  position: relative;
+}
+
+.center {
+  position: absolute;
+  top: 35%;
+  width: 100%;
+  text-align: center;
+  font-size: 80px;
+  color: rgba(31,31,31,1);
+}
+
+hr {
+  //position: absolute;
+  //border: none;
+  //height: 1px;
+  display: block;
+  color: darkolivegreen;
+  width: 50%;
+  height: 0.15em;
+  border-width:0;
+  color:gray;
+  background-color:gray;
+  z-index: -1;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  //opacity: 0.3;
+}
+
+// center
+
+.center-header {
+  text-align: center;
+}

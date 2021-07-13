@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         },
         "@schematics/angular:application": {
           "strict": true
@@ -31,7 +31,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass",
+              "src/styles.scss",
               "node_modules/firebaseui/dist/firebaseui.css"
             ],
             "scripts": []
@@ -95,7 +95,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass",
+              "src/styles.scss",
               "node_modules/firebaseui/dist/firebaseui.css"
             ],
             "scripts": []
@@ -127,6 +127,11 @@
           }
         }
       }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
     }
   },
   "defaultProject": "UI"

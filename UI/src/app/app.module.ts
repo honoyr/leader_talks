@@ -14,6 +14,29 @@ import {AngularFireAuthModule, USE_EMULATOR as USE_AUTH_EMULATOR} from '@angular
 import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 import { FireAuthComponent } from './fire-auth/fire-auth.component';
 import { AuthpageComponent } from './authpage/authpage.component';
+import { HomePageComponent } from './home-page/home-page.component';
+
+import {
+  NbThemeModule,
+  NbSidebarModule,
+  NbLayoutModule,
+  NbButtonModule, NbMenuModule, NbCardModule, NbListModule, NbSpinnerModule
+} from '@nebular/theme';
+// import { RouterModule } from '@angular/router';
+import { ErrorComponent } from './error/error.component'; // we also need angular router for Nebular to function properly
+
+// icons
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { MenuComponent } from './menu/menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BannerComponent } from './banner/banner.component';
+import { UserboardComponent } from './userboard/userboard.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import {NewsPostPlaceholderComponent} from "./userboard/components/news-post-placeholder.component";
+import {NewsPostComponent} from "./userboard/components/news-post.component";
+import {CommonModule} from "@angular/common";
+import {HttpClientModule} from "@angular/common/http";
+import {NewsService} from "./userboard/news.service";
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -48,6 +71,16 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
 @NgModule({
   declarations: [
     AppComponent,
+    HomePageComponent,
+    ErrorComponent,
+    MenuComponent,
+    BannerComponent,
+    UserboardComponent,
+    UserCardComponent,
+    NewsPostPlaceholderComponent,
+    NewsPostComponent,
+    // NewsService,
+
     // FireAuthComponent,
     // AuthpageComponent
   ],
@@ -58,7 +91,22 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireModule.initializeApp(environment.firebaseAuth),
     AngularFireAnalyticsModule,
     AngularFireAuthModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    NbEvaIconsModule,
+    NbThemeModule.forRoot(),
+    // RouterModule, // RouterModule.forRoot(routes, { useHash: true }), if this is your app.module
+    NbLayoutModule,
+    NbSidebarModule.forRoot(), // NbSidebarModule.forRoot(), //if this is your app.module
+    NbButtonModule,
+    NbMenuModule.forRoot(),
+    NbCardModule,
+    NbThemeModule.forRoot({name: 'default'}),
+    BrowserAnimationsModule,
+    NbListModule,
+    NbSpinnerModule,
+    CommonModule,
+    HttpClientModule,
+
   ],
   providers: [{ provide: USE_AUTH_EMULATOR, useValue: !environment.production ? ['localhost', 9099] : undefined },],
   bootstrap: [AppComponent]

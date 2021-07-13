@@ -6,10 +6,10 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-fire-auth',
   templateUrl: './fire-auth.component.html',
-  styleUrls: ['./fire-auth.component.sass']
+  styleUrls: ['./fire-auth.component.scss']
 })
 export class FireAuthComponent implements OnInit {
-  
+
   constructor(private afAuth: AngularFireAuth, private router: Router) {
   }
 

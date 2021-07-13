@@ -5,7 +5,7 @@ import {FirebaseUISignInSuccessWithAuthResult} from 'firebaseui-angular';
 @Component({
   selector: 'app-authpage',
   templateUrl: './authpage.component.html',
-  styleUrls: ['./authpage.component.sass']
+  styleUrls: ['./authpage.component.scss']
 })
 export class AuthpageComponent implements OnInit {
 
