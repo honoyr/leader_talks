@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "dialogflow-14c33": {
+      "hosting": {
+        "UI": [
+          "dialogflow-14c33"
+        ]
+      }
+    }
+  }
+}

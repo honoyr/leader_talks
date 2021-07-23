@@ -28,11 +28,20 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/@taiga-ui/icons/src",
+                "output": "assets/taiga-ui/icons"
+              }
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/firebaseui/dist/firebaseui.css"
+              "node_modules/firebaseui/dist/firebaseui.css",
+              "node_modules/@taiga-ui/core/styles/taiga-ui-global.less",
+              "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+              "node_modules/@taiga-ui/core/styles/theme/variables.less",
+              "node_modules/@taiga-ui/core/styles/theme/wrapper.less"
             ],
             "scripts": []
           },
@@ -125,6 +134,10 @@
               "devServerTarget": "UI:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

@@ -1,0 +1,12 @@
+<tui-root>
+  <tui-input-file
+    class="container"
+    link="Choose an image"
+    accept="image/*"
+    [formControl]="control"
+    [loadingFiles]="loading$ | async"
+    [rejectedFiles]="rejected$ | async"
+  >
+
+  </tui-input-file>
+</tui-root>

@@ -1,0 +1,38 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <!--    <button nbButton status="success" size="tiny" (click)="toggle()">Toggle</button>-->
+    <!--    <button nbButton status="info" size="tiny" (click)="toggleCompact()">Toggle Compact</button>-->
+    <!--    <nb-layout-column>-->
+    <nb-tabset>
+      <nb-tab tabTitle="Users">
+        <p>List of <strong>users</strong>.</p>
+      </nb-tab>
+      <nb-tab tabTitle="Orders">
+        <p>List of <strong>orders</strong>.</p>
+      </nb-tab>
+      <nb-tab tabTitle="Transactions" disabled>
+        <!--          <p>List of <strong>transactions</strong>.</p>-->
+      </nb-tab>
+    </nb-tabset>
+    <!--    </nb-layout-column>-->
+
+    <nb-card>
+      <nb-card-body>
+
+        <nb-user size="large"
+                 name="John Doe"
+                 title="Engineer"
+                 badgeText="99+"
+                 badgeStatus="success"
+                 badgePosition="bottom right">
+        </nb-user>
+
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-header>
+  <nb-sidebar>
+    <app-add-participant></app-add-participant>
+  </nb-sidebar>
+
+  <nb-layout-column class="colored-column-success">Layout Content</nb-layout-column>
+</nb-layout>
