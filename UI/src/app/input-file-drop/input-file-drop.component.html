@@ -1,12 +1,15 @@
 <tui-root>
-  <tui-input-file
-    class="container"
-    link="Choose an image"
-    accept="image/*"
-    [formControl]="control"
-    [loadingFiles]="loading$ | async"
-    [rejectedFiles]="rejected$ | async"
-  >
-
-  </tui-input-file>
+<!--  <div class="container">-->
+<!--    <p i18n class="tui-space_bottom-1">-->
+<!--      With preset files and actions when deleting-->
+<!--    </p>-->
+    <tui-input-file
+      [ngModel]="files"
+      [multiple]="true"
+      [loadingFiles]="loadingFiles"
+      [(rejectedFiles)]="rejectedFiles"
+      (ngModelChange)="onModelChange($event)"
+    ></tui-input-file>
+<!--    <p i18n>Loading files should also be in control</p>-->
+<!--  </div>-->
 </tui-root>

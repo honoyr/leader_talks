@@ -150,6 +150,7 @@ import {
   TuiTextAreaModule,
   TuiToggleModule,
 } from '@taiga-ui/kit';
+import {ParticipantComponent} from "./add-participant/components/participant.component";
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -196,7 +197,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AddParticipantComponent,
     AdminPageComponent,
     InputFileDropComponent,
-
+    ParticipantComponent,
     // NewsService,
 
     // FireAuthComponent,
@@ -229,6 +230,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     NbDialogModule.forRoot(),
     NbIconModule,
     NbInputModule,
+
     TuiInputFileModule,
     ReactiveFormsModule,
     TuiRootModule,

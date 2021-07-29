@@ -5,6 +5,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+
+import {InputFileDropComponent} from "../input-file-drop/input-file-drop.component";
+import {ParticipantComponent} from "./components/participant.component";
 // import {InputFileDropComponent} from '../input-file-drop'
 
 interface UploadFileParams {
@@ -21,7 +24,13 @@ export class AddParticipantComponent implements OnInit {
   storage: AngularFireStorage;
   downloadURL: Observable<string> | undefined;
 
-  constructor(private dialogService: NbDialogService, firestore: AngularFirestore, firestoreStorage: AngularFireStorage) {
+  speaker: object = {};
+
+  constructor(
+      private dialogService: NbDialogService,
+      firestore: AngularFirestore,
+      firestoreStorage: AngularFireStorage
+  ) {
     this.db = firestore;
     this.storage = firestoreStorage;
   }
@@ -69,8 +78,9 @@ export class AddParticipantComponent implements OnInit {
       });
   }
 
-  open(dialog: TemplateRef<any>) {
-    this.dialogService.open(dialog, { context: 'this is some additional data passed to dialog' });
+  open() {
+    this.dialogService.open(ParticipantComponent)
+      .onClose.subscribe(speaker => console.log(speaker));
   }
 
   createParticipant(){
