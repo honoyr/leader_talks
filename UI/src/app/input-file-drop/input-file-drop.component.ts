@@ -4,6 +4,8 @@ import {TuiNotificationsService} from '@taiga-ui/core';
 import {TuiFileLike} from '@taiga-ui/kit';
 import {combineLatest, Observable, Subject, timer} from 'rxjs';
 import {finalize, mapTo, startWith, switchMap, takeUntil} from 'rxjs/operators';
+import {PhotoService} from "../service/photo.service";
+// import * as console from "console";
 
 // import { AngularFirestore } from '@angular/fire/firestore';
 // import { AngularFireStorage } from '@angular/fire/storage';
@@ -43,28 +45,15 @@ function convertRejected({file, reason}: RejectedFile): TuiFileLike {
   providers: [TuiDestroyService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class InputFileDropComponent {
-  files: ReadonlyArray<TuiFileLike> = [
-    {
-      name: 'Loading file.txt',
-    },
-    {
-      name:
-        'A file with a very very long title to check that it can be cut correctly.txt',
-      src: 'https://tools.ietf.org/html/rfc675',
-    },
-  ];
+  files: ReadonlyArray<TuiFileLike> = [ ];
   loadingFiles: ReadonlyArray<TuiFileLike> = [this.files[0]];
-  rejectedFiles: ReadonlyArray<TuiFileLike> = [
-    {
-      name: 'File with an error.txt',
-      content: 'Something went wrong this time',
-    },
-  ];
+  rejectedFiles: ReadonlyArray<TuiFileLike> = [ ];
 
   // db: AngularFirestore;
   // storage: AngularFireStorage;
-
+  private static readonly STORAGE_PATH = 'speakersImg/';
   private readonly files$ = new Subject<ReadonlyArray<TuiFileLike>>();
 
   constructor(
@@ -72,6 +61,7 @@ export class InputFileDropComponent {
     @Inject(ChangeDetectorRef) changeDetectorRef: ChangeDetectorRef,
     @Inject(TuiNotificationsService)
     private readonly notificationsService: TuiNotificationsService,
+    private photoService: PhotoService,
     // firestore: AngularFirestore,
     // firestoreStorage: AngularFireStorage
   ) {
@@ -92,6 +82,16 @@ export class InputFileDropComponent {
     // this.storage = firestoreStorage;
   }
 
+  // get getFile() : TuiFileLike {
+  //
+  //   return this.files[0];
+  // }
+  //
+  // get getFils() : TuiFileLike[] {
+  //
+  //   return this.files;
+  // }
+
   onModelChange(files: ReadonlyArray<TuiFileLike>) {
     this.processNotification(files);
 
@@ -107,6 +107,9 @@ export class InputFileDropComponent {
     this.files = files;
     this.loadingFiles = this.files;
     this.files$.next(this.files);
+    // console.log(this.files);
+    // console.log(this.loadingFiles);
+    // this.photoService.uploadFile(this.files[0], InputFileDropComponent.STORAGE_PATH);
   }
 
   private processNotification(files: ReadonlyArray<TuiFileLike>) {

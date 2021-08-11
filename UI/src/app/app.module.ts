@@ -198,6 +198,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AdminPageComponent,
     InputFileDropComponent,
     ParticipantComponent,
+
     // NewsService,
 
     // FireAuthComponent,

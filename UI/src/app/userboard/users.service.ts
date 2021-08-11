@@ -73,7 +73,7 @@ export class UserService {
 
   CreateUser(event: any) {
     // console.log(event.target.files);
-    const name = "Irina Pavlova";
+    const name = "denis";
     const file = event.target.files[0];
     const filePath = 'speakersImg/' + name;
     const ref = this.storage.ref(filePath);
@@ -101,7 +101,7 @@ export class UserService {
 
   addUserData(user: object, url: string){
     const speaker = {
-      "title": "Irina Pavlova",
+      "title": "Denis",
       "summary": "ex-President of Onexim Sports",
       "img": [url]
     };

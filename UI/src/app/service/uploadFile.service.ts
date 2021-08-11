@@ -1,38 +1,59 @@
 import { Observable } from 'rxjs';
-import { AngularFireStorage } from '@angular/fire/storage';
+import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import {TuiFileLike} from "@taiga-ui/kit";
+import {forEachChild} from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
 
-export class UploadFileService {
+// @Injectable({
+//   providedIn: 'root'
+// })
+
+export abstract class UploadFileService {
   private storage: AngularFireStorage;
-  private filePath: string;
+  // public reference: Observable<AngularFireStorageReference>;
+  // private filePath: string | undefined;
 
-  public uploadPercent: Observable<number | undefined > | undefined;
-  public downloadURL: Observable<string> | undefined;
+  // public uploadPercent: Observable<number | undefined > | undefined;
+  // public downloadURL: Observable<string> | undefined;
 
 
-  constructor(firestoreStorage: AngularFireStorage, filePath: string) {
+ protected constructor(firestoreStorage: AngularFireStorage) {
     this.storage = firestoreStorage;
-    this.filePath = filePath.charAt(filePath.length - 1) === '/' ? filePath : filePath + '/';
   }
 
-  // setPath(filePath: string){
-  //   this.filePath = filePath.charAt(filePath.length - 1) === '/' ? filePath : filePath + '/';
-  // }
-  // set setPath(){
-  //
-  // }
 
-  uploadFile(event: any) {
-    const file = event.target.files[0];
-    this.filePath += event.target.files[0].name;
-    const ref = this.storage.ref(this.filePath);
-    const task = this.storage.upload(this.filePath, file);
 
-    this.uploadPercent = task.percentageChanges();
-    // get notified when the download URL is available
-    task.snapshotChanges().pipe(
-      finalize(() => this.downloadURL = ref.getDownloadURL() )
-    )
-      .subscribe()
+  public uploadFile(file: File, filePath: string) {
+    // const file = event.target.files[0];
+    filePath += file.name;
+    // filePath += 'test';
+    // file.content
+    // console.log(file);
+    // console.log(`name = ${file.name} | SRC = ${file.src} | content ${file.content} TYPE = ${file.type}`);
+    const ref = this.storage.ref(filePath);
+    console.log(ref);
+    const task = this.storage.upload(filePath, file);
+
+    // this.uploadPercent = task.percentageChanges();
+    // console.log(task.percentageChanges());
+    // // get notified when the download URL is available
+
+    task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+          const url = ref.getDownloadURL()
+          url.subscribe(url => console.log(url))
+          // console.log(url);
+        })
+      )
+      .subscribe();
+
+  }
+
+  public uploadFiles (files: File[], filePath: string) {
+   for (let file of files){
+     this.uploadFile(file, filePath);
+   }
   }
 }
