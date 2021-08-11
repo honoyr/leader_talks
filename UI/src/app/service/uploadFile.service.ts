@@ -25,19 +25,9 @@ export abstract class UploadFileService {
 
 
   public uploadFile(file: File, filePath: string) {
-    // const file = event.target.files[0];
     filePath += file.name;
-    // filePath += 'test';
-    // file.content
-    // console.log(file);
-    // console.log(`name = ${file.name} | SRC = ${file.src} | content ${file.content} TYPE = ${file.type}`);
     const ref = this.storage.ref(filePath);
-    console.log(ref);
     const task = this.storage.upload(filePath, file);
-
-    // this.uploadPercent = task.percentageChanges();
-    // console.log(task.percentageChanges());
-    // // get notified when the download URL is available
 
     task.snapshotChanges()
       .pipe(
@@ -48,7 +38,6 @@ export abstract class UploadFileService {
         })
       )
       .subscribe();
-
   }
 
   public uploadFiles (files: File[], filePath: string) {

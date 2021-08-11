@@ -221,9 +221,6 @@ export class ParticipantComponent {
     startWith([]),
   );
 
-  // readonly form = new FormGroup({
-  //   files: this.files,
-  // });
 
   onRejectedFilesChange(rejectedFiles: ReadonlyArray<TuiFileLike>) {
     this.rejectedFiles$.next(rejectedFiles);
@@ -249,6 +246,19 @@ export class ParticipantComponent {
     return timer(delay).pipe(mapTo(result));
   }
 
+  close() {
+    this.dialogRef.close();
+  }
+
+  submit() {
+    const contact = new Contact();
+    contact.firstName = this.firstName?.value as string;
+    contact.lastName = this.lastName?.value as string;
+    contact.summary = this.summary?.value as string;
+    this.addContact(contact)
+    this.dialogRef.close(contact);
+  }
+
   private addContact(contact: Contact){
     const contactTask = this.contactService.createContact(contact, ParticipantComponent.DB_PATH);
     contactTask.then((docRef) => {
@@ -265,32 +275,11 @@ export class ParticipantComponent {
       });
   }
 
-  close() {
-    this.dialogRef.close();
-  }
-
-
-  submit() {
-    const contact = new Contact();
-    contact.firstName = this.firstName?.value as string;
-    contact.lastName = this.lastName?.value as string;
-    contact.summary = this.summary?.value as string;
-    // contact.picture = this.inputFile?.value;
-
-    // debugger;
-    this.addContact(contact)
-
-
-
-    this.dialogRef.close(contact);
-  }
-
   private addImages(contact: Contact, bucketFilePath: string) {
     const resizeImages: ResizeImages = new ResizeImages;
     const filePath = bucketFilePath + '/avatar';
     const ref = this.storage.ref(filePath);
     const uploadFileTask = this.storage.upload(filePath, this.inputFile?.value[0],);
-
 
     uploadFileTask.snapshotChanges()
       .pipe(
@@ -310,11 +299,10 @@ export class ParticipantComponent {
 
 
   private updateContact(contact: Contact) {
-   const task =  this.contactService.updateContact(contact);
+   const task =  this.contactService.updateContact(contact, ParticipantComponent.DB_PATH);
 
    task.then(() => {
      console.log("Document updated with ID: ", contact.id);
-
    })
      .catch((error) => {
        console.error("Error updating document: ", error);

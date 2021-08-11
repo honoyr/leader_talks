@@ -29,23 +29,20 @@ export class ContactService {
     return this.db.collection(path).add(dto);
   }
 
-  updateContact(contact: Contact) {
-
+  updateContact(contact: Contact, path: string) {
     const dto: contactDto = this.parseDto(contact);
-    console.log(dto);
-    console.log("Type in update contact" + typeof dto);
-   return this.db.doc(`/speakers/${contact.id}`).set(dto);
+    return this.db.doc(`/${path}/${contact.id}`).set(dto);
   }
 
   parseDto(contact: Contact){
-    console.log(contact.avatar.original);
-    console.log(contact.avatar.filePath);
-    const avatarDto: ResizeImagesDto = {
-      original: contact.avatar.original,
-      filePath: contact.avatar.filePath
-    }
-    // const avatar: string = this.getAvatarDto(contact.avatar);
-    console.log(avatarDto);
+    // console.log(contact.avatar.original);
+    // console.log(contact.avatar.filePath);
+    // const avatarDto: ResizeImagesDto = {
+    //   original: contact.avatar.original,
+    //   filePath: contact.avatar.filePath
+    // }
+    const avatarDto: ResizeImagesDto = this.getAvatarDto(contact.avatar);
+    // console.log(avatarDto);
     const dto: contactDto = {
       first_name: contact.firstName,
       last_name: contact.lastName,
@@ -63,21 +60,9 @@ export class ContactService {
       original: avatar.original,
       filePath: avatar.filePath
     }
-    console.log(`avatarDPO = ${avatarDto}`);
-    console.log(`avatarDPO = ${avatarDto.toString()}`);
-    return avatarDto.toString();
+    // console.log(`avatarDPO = ${avatarDto}`);
+    // console.log(`avatarDPO = ${avatarDto.toString()}`);
+    return avatarDto;
   }
-  // addUserData(user: object, DBpath: string,){
-  //
-  //   this.db.collection(DBpath).add(user).then((docRef) => {
-  //     console.log("Document written with ID: ", docRef.id);
-  //   })
-  //     .catch((error) => {
-  //       console.error("Error adding document: ", error);
-  //     });
-  // }
 
-  // static createContact(contact: Contact, DB_PATH: string) {
-  //
-  // }
 }
