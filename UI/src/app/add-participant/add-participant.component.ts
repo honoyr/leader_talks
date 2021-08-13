@@ -18,8 +18,6 @@ export class AddParticipantComponent implements OnInit {
   open() {
     this.dialogService.open(ParticipantComponent)
       .onClose.subscribe(contact => {
-      // ContactService.createContact(contact, AddParticipantComponent.DB_PATH);
-      console.log(`open = ${contact}`);
     });
   }
 
