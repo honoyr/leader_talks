@@ -26,7 +26,10 @@ export class Contact {
 
   public summary!: string;
 
+  public timestamp!: number;
+
   constructor() {
+    this.timestamp = Date.now();
   }
 
   public getAvatarLetters() {
@@ -66,6 +69,10 @@ export interface contactDto {
   plan_id?: string;
 
   summary: string;
+
+  timestamp: number;
+
+  serverTime?: any;
 
 }
 

@@ -46,7 +46,7 @@ import {NewsPostComponent} from "./userboard/components/news-post.component";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {NewsService} from "./userboard/news.service";
-import {UserService} from "./userboard/users.service";
+import {UserService} from "./service/users.service";
 import { AddParticipantComponent } from './add-participant/add-participant.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { InputFileDropComponent } from './input-file-drop/input-file-drop.component';
@@ -151,6 +151,7 @@ import {
   TuiToggleModule,
 } from '@taiga-ui/kit';
 import {ParticipantComponent} from "./add-participant/components/participant.component";
+import { UserListComponent } from './user-list/user-list.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -198,6 +199,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AdminPageComponent,
     InputFileDropComponent,
     ParticipantComponent,
+    UserListComponent,
 
     // NewsService,
 

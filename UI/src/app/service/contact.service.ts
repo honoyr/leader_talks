@@ -23,7 +23,8 @@ export class ContactService {
       last_name: contact.lastName,
       summary: contact.summary,
       img: contact.img,
-      bucketFilePath: "contact.bucketFilePath"
+      bucketFilePath: "contact.bucketFilePath",
+      timestamp: contact.timestamp
    };
     console.log(dto);
     return this.db.collection(path).add(dto);
@@ -49,7 +50,8 @@ export class ContactService {
       summary: contact.summary,
       img: contact.img,
       avatar: avatarDto,
-      bucketFilePath: contact.bucketFilePath
+      bucketFilePath: contact.bucketFilePath,
+      timestamp: contact.timestamp
     };
 
     return dto;
