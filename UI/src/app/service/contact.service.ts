@@ -3,6 +3,7 @@ import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import {Contact, contactDto} from "../model/Contact";
 import {ResizeImages, ResizeImagesDto} from "../model/ResizeImages";
+import {Query} from "firebase";
 
 
 @Injectable({
@@ -65,6 +66,12 @@ export class ContactService {
     // console.log(`avatarDPO = ${avatarDto}`);
     // console.log(`avatarDPO = ${avatarDto.toString()}`);
     return avatarDto;
+  }
+
+  getContactList(path: string, lastVisible: number, limit: number) {
+    return this.db.collection(path)
+      .startAfter(lastVisible)
+      .limit(limit);
   }
 
 }
