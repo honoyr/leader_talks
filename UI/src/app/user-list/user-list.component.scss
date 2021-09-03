@@ -1,0 +1,15 @@
+:host ::ng-deep nb-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  overflow: auto;
+  order: 4;
+}
+
+:host ::ng-deep nb-list-item{
+  display: flex;
+  align-items: center;
+  //flex-wrap: wrap;
+  flex-shrink: 0;
+}

@@ -3,7 +3,7 @@ import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import {Contact, contactDto} from "../model/Contact";
 import {ResizeImages, ResizeImagesDto} from "../model/ResizeImages";
-import {Query} from "firebase";
+// import {Query} from "firebase";
 
 
 @Injectable({
@@ -68,10 +68,22 @@ export class ContactService {
     return avatarDto;
   }
 
-  getContactList(path: string, lastVisible: number, limit: number) {
-    return this.db.collection(path)
-      .startAfter(lastVisible)
-      .limit(limit);
+  getContactList(path: string) {
+    return this.db.collection(path);
   }
 
+  getPaginateQuery(path: string, lastVisible: number, limit: number, pageToLoadNext: number) {
+    if (pageToLoadNext === 0) {
+      return this.db.collection(path, ref => ref.orderBy("timestamp").limit(limit));
+    } else {
+      return this.db.collection(path, ref => ref.orderBy("timestamp").startAfter(lastVisible).limit(limit));
+    }
+  }
+
+  // getContactsByLimit(path: string, limit: number) {
+  //   return this.db.collection(path, ref => ref.orderBy("timestamp").limit(limit));
+  // }
+
 }
+
+

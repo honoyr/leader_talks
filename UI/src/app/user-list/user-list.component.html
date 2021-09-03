@@ -4,11 +4,11 @@
     listenWindowScroll
     [threshold]="500"
     (bottomThreshold)="loadNext()">
-    <nb-list-item *ngFor="let user of usersList$">
+    <nb-list-item *ngFor="let user of usersList">
       <app-user-card [user$] = "user"></app-user-card>
     </nb-list-item>
-    <nb-lisbt-item *ngFor="let _ of placeholders">
-      <app-user-card-placeholder></app-user-card-placeholder>
-    </nb-lisb t-item>
+    <nb-list-item *ngFor="let _ of placeholders">
+      <nb-news-post-placeholder></nb-news-post-placeholder>
+    </nb-list-item>
   </nb-list>
 </nb-card>

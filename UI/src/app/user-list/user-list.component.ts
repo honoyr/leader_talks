@@ -9,12 +9,15 @@ import {ContactService} from "../service/contact.service";
 })
 export class UserListComponent implements OnInit {
 
-  usersList$: Observable<any[]>;
-  placeholders = [];
-  limit = 10;
-  lastVisible = 1;
+  usersList = [];
+  placeholders: any = [];
+  limit: number = 15;
+  lastVisible: any;
   loading = false;
+
   private static readonly DB_PATH = 'speakers';
+  private pageToLoadNext: number = 0;
+
 
   constructor(private contactService: ContactService) { }
 
@@ -22,35 +25,19 @@ export class UserListComponent implements OnInit {
     if (this.loading) { return }
 
     this.loading = true;
-    // @ts-ignore
-    this.placeholders = new Array(this.pageSize);
 
-    this.contactService.getContactList(UserListComponent.DB_PATH, this.lastVisible, this.limit)
-      .subscribe(users => {
-        this.placeholders = [];
-        // @ts-ignore
-        this.usersList.push(...users);
-        this.loading = false;
-        this.pageToLoadNext++;
-      });
+    this.placeholders = new Array(this.limit);
+      this.contactService.getPaginateQuery(UserListComponent.DB_PATH, this.lastVisible, this.limit, this.pageToLoadNext)
+        .valueChanges()
+        .subscribe(users => {
+          this.placeholders = [];
+          // @ts-ignore
+          this.usersList.push(...users);
+          this.loading = false;
+          this.lastVisible = this.usersList[users.length - 1];
+          this.pageToLoadNext++;
+        })
   }
-
-  var first = db.collection("cities")
-    .orderBy("population")
-    .limit(25);
-
-  return first.get().then((documentSnapshots) => {
-  // Get the last visible document
-  var lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-  console.log("last", lastVisible);
-
-  // Construct a new query starting at this document,
-  // get the next 25 cities.
-  var next = db.collection("cities")
-    .orderBy("population")
-    .startAfter(lastVisible)
-    .limit(25);
-});
 
   ngOnInit(): void {
   }
