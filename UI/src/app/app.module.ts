@@ -152,6 +152,7 @@ import {
 } from '@taiga-ui/kit';
 import {ParticipantComponent} from "./add-participant/components/participant.component";
 import { UserListComponent } from './user-list/user-list.component';
+import {UserCardPlaceholderComponent} from "./user-card/user-card-placeholder.component";
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -193,6 +194,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     UserboardComponent,
     UserCardComponent,
     NewsPostPlaceholderComponent,
+    UserCardPlaceholderComponent,
     NewsPostComponent,
     UserService,
     AddParticipantComponent,

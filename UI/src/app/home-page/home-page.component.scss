@@ -12,22 +12,19 @@
   top: 35%;
   width: 100%;
   text-align: center;
-  font-size: 80px;
+  font-size: 5vw;
   color: rgba(31,31,31,1);
 }
 
-hr {
-  //position: absolute;
-  //border: none;
-  //height: 1px;
+.hb-hr {
+  position: absolute;
   display: block;
-  color: darkolivegreen;
   width: 50%;
-  height: 0.15em;
+  height: 0.25rem;
   border-width:0;
   color:gray;
   background-color:gray;
-  z-index: -1;
+  z-index: 1;
 }
 
 img {
@@ -35,8 +32,6 @@ img {
   height: auto;
   //opacity: 0.3;
 }
-
-// center
 
 .center-header {
   text-align: center;

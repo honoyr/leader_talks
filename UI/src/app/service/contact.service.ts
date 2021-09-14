@@ -37,12 +37,6 @@ export class ContactService {
   }
 
   parseDto(contact: Contact){
-    // console.log(contact.avatar.original);
-    // console.log(contact.avatar.filePath);
-    // const avatarDto: ResizeImagesDto = {
-    //   original: contact.avatar.original,
-    //   filePath: contact.avatar.filePath
-    // }
     const avatarDto: ResizeImagesDto = this.getAvatarDto(contact.avatar);
     // console.log(avatarDto);
     const dto: contactDto = {
@@ -63,8 +57,6 @@ export class ContactService {
       original: avatar.original,
       filePath: avatar.filePath
     }
-    // console.log(`avatarDPO = ${avatarDto}`);
-    // console.log(`avatarDPO = ${avatarDto.toString()}`);
     return avatarDto;
   }
 
@@ -72,18 +64,15 @@ export class ContactService {
     return this.db.collection(path);
   }
 
-  getPaginateQuery(path: string, lastVisible: number, limit: number, pageToLoadNext: number) {
+  getPaginateQuery(path: string, lastVisible: any, limit: number, pageToLoadNext: number) {
     if (pageToLoadNext === 0) {
+      // console.log(lastVisible);
       return this.db.collection(path, ref => ref.orderBy("timestamp").limit(limit));
     } else {
+      // console.log(lastVisible);
       return this.db.collection(path, ref => ref.orderBy("timestamp").startAfter(lastVisible).limit(limit));
     }
   }
-
-  // getContactsByLimit(path: string, limit: number) {
-  //   return this.db.collection(path, ref => ref.orderBy("timestamp").limit(limit));
-  // }
-
 }
 
 

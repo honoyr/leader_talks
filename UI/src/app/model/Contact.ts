@@ -42,10 +42,6 @@ export class Contact {
     return avatarLetters.toUpperCase();
   }
 
-  // public setPicture(url: string | undefined) {
-  //   this.picture = url;
-  // }
-
 }
 
 export interface contactDto {
