@@ -13,22 +13,18 @@ export class MenuComponent implements OnInit {
 
   items: NbMenuItem[] = [
     {
-      title: 'Profile',
+      title: 'Home',
+      icon: 'home-outline',
+      link: ''
+    },
+    {
+      title: 'Join',
       icon: 'person-outline',
-      link: 'auth'
+      // url: 'https://docs.google.com/forms/d/e/1FAIpQLSdzOpoBBl0cNQ9J3NLZKeEP9mLHr5N5UF7lUkwMyQFBQm4xmQ/viewform?fbclid=IwAR3npvSbpsDmzC6HzgFXNB0iGEGlyuVB98ajxiAN5V2iJb1jTOyiidjuD98'
     },
     {
-      title: 'Change Password',
+      title: 'log in',
       icon: 'lock-outline',
-    },
-    {
-      title: 'Privacy Policy',
-      icon: { icon: 'checkmark-outline', pack: 'eva' },
-      link: 'auth'
-    },
-    {
-      title: 'Logout',
-      icon: 'unlock-outline',
       link: 'auth'
     },
   ];

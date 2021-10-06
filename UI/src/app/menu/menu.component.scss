@@ -1,13 +1,21 @@
 
+nb-card {
+  border: none;
+  margin-bottom: auto;
+}
 
 :host ::ng-deep {
   nb-menu {
-    //background-color: ;
 
     ul.menu-items {
       margin: 0;
       padding: 0;
       display: flex;
+      border: none;
+    }
+
+    .menu-item {
+      border-bottom: none;
     }
 
     .menu-group,
@@ -18,6 +26,8 @@
       line-height: nb-theme(menu-text-line-height);
       padding: nb-theme(menu-item-padding);
       //display: flex;
+      //border: none;
+      //border-bottom: none;
     }
 
     .menu-group,

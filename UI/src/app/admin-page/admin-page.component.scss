@@ -2,3 +2,27 @@
 :host nb-layout-header ::ng-deep nav {
   justify-content: space-between;
 }
+
+.container {
+  position: relative;
+}
+
+
+.center-header {
+  text-align: center;
+}
+
+//
+//:host {
+//  display: flex;
+//}
+
+nb-card {
+  //flex: 1 1 45%;
+  //margin: 0 2.5%;
+
+  &.own-scroll {
+    height: 100rem;
+    width: auto;
+  }
+}
