@@ -1,12 +1,14 @@
 ## 1. Overview
 Leader Talks
 ============
-The website designed to show up speakers of the community. The community holds a lot of virtual events with venture capitalists, tech industry specialists, entrepreneurs, etc, and the website helps to manage information about the speakers and events.
+The website is designed to show up speakers of the community. The community holds a lot of virtual events with venture capitalists, tech industry specialists, entrepreneurs, etc, and the website helps to manage information about the speakers and events.
 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/33399226/138623718-d8df3f25-5f02-4616-b4eb-654e4b0194de.gif)
 ### Features:
 - List of speakers - implemented as an infinite scroll.
 - Sign in/ sing up - support google, twitter, email, phone.
 - Admin panel - managing speakers with admin credentials.
+- Form - creating speaker card with drag and drop file validator (size, type).
 
 ### Requirements
 
@@ -101,8 +103,6 @@ An alias is useful if you have multiple environments (production, staging, etc).
 }
 ```
 ## 6. Installing dependency
-
-### Functions
 
 - Go to UI directory ```cd UI```
 - Install dependency ```npm install```
