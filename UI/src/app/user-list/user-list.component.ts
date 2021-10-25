@@ -23,23 +23,24 @@ export class UserListComponent implements OnInit {
   loadNext() {
     if (this.loading) { return }
     this.loading = true;
-    this.placeholders = new Array(this.limit / 2);
-    const segment = this.contactService.getPaginateQuery(UserListComponent.DB_PATH, this.lastVisible, this.limit, this.pageToLoadNext);
+    this.placeholders = new Array(this.limit);
+    const segment = this.contactService.getPaginateQuery(UserListComponent.DB_PATH, this.lastVisible, this.limit, this.pageToLoadNext)
 
-    segment.get().subscribe(querySnapshot => {
-      this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-      if (querySnapshot.docs.length < this.limit) {
-        this.limit = querySnapshot.docs.length - 1;
-      }
-      querySnapshot.forEach(doc => {
-        // @ts-ignore
-        this.usersList.push(doc.data() as contactDto);
+    segment.valueChanges().subscribe( users => {
+      // @ts-ignore
+      this.usersList.push(...users);
+      segment.get().subscribe(querySnapshot => {
+        this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+        if (querySnapshot.docs.length < this.limit) {
+          this.limit = (querySnapshot.docs.length - 1) % this.limit;
+        }
+        this.lastVisible ? this.loading = false : this.placeholders = [];
+        this.pageToLoadNext++;
       });
-      this.lastVisible ? this.loading = false : this.placeholders = [];
-      this.pageToLoadNext++;
-    });
+      })
   }
 
   ngOnInit(): void {
+
   }
 }

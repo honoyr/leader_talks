@@ -20,7 +20,9 @@
 nb-card {
   //flex: 1 1 45%;
   //margin: 0 2.5%;
-
+  //justify-content: flex-end;
+  border: none;
+  padding: 5pt;
   &.own-scroll {
     height: 100rem;
     width: auto;

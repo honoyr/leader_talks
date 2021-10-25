@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, DocumentReference} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import {Contact, contactDto} from "../model/Contact";
 import {ResizeImages, ResizeImagesDto} from "../model/ResizeImages";
-// import {Query} from "firebase";
-
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +35,6 @@ export class ContactService {
 
   parseDto(contact: Contact){
     const avatarDto: ResizeImagesDto = this.getAvatarDto(contact.avatar);
-    // console.log(avatarDto);
     const dto: contactDto = {
       first_name: contact.firstName,
       last_name: contact.lastName,
@@ -48,7 +44,6 @@ export class ContactService {
       bucketFilePath: contact.bucketFilePath,
       timestamp: contact.timestamp
     };
-
     return dto;
   }
 
@@ -66,10 +61,8 @@ export class ContactService {
 
   getPaginateQuery(path: string, lastVisible: any, limit: number, pageToLoadNext: number) {
     if (pageToLoadNext === 0) {
-      // console.log(lastVisible);
       return this.db.collection(path, ref => ref.orderBy("timestamp").limit(limit));
     } else {
-      // console.log(lastVisible);
       return this.db.collection(path, ref => ref.orderBy("timestamp").startAfter(lastVisible).limit(limit));
     }
   }
