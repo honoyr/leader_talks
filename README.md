@@ -107,7 +107,11 @@ An alias is useful if you have multiple environments (production, staging, etc).
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 
 #### Local environment
-- Run Docker compase locally `docker-compose up`.
+- Run Docker compase locally 
+```
+docker-compose up
+
+```
 
 ## Development server
 
