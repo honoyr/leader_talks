@@ -104,18 +104,22 @@ An alias is useful if you have multiple environments (production, staging, etc).
 ```
 ## 6. Deployment Frontend
 
-#### Local environment
-- Run Docker compase locally `docker-compase up`.
-
-# UI
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
+
+#### Local environment
+- Run Docker compase locally `docker-compose up`.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+#### Production environment
 
-## Deployment Backend
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## 7. Deployment Backend
 
 #### Local environment
 - Run your functions locally `npm run-script serve`.
