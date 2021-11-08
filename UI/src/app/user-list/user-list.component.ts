@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ContactService} from "../service/contact.service";
-import {contactDto} from "../model/Contact";
+import {ContactService} from '../service/contact.service';
+import {contactDto} from '../model/Contact';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
 
@@ -21,10 +21,10 @@ export class UserListComponent implements OnInit {
   constructor(private contactService: ContactService) { }
 
   loadNext() {
-    if (this.loading) { return }
+    if (this.loading) { return; }
     this.loading = true;
     this.placeholders = new Array(this.limit);
-    const segment = this.contactService.getPaginateQuery(UserListComponent.DB_PATH, this.lastVisible, this.limit, this.pageToLoadNext)
+    const segment = this.contactService.getPaginateQuery(UserListComponent.DB_PATH, this.lastVisible, this.limit, this.pageToLoadNext);
 
     segment.valueChanges().subscribe( users => {
       // @ts-ignore
@@ -37,7 +37,7 @@ export class UserListComponent implements OnInit {
         this.lastVisible ? this.loading = false : this.placeholders = [];
         this.pageToLoadNext++;
       });
-      })
+      });
   }
 
   ngOnInit(): void {

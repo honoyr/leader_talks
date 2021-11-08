@@ -36,6 +36,7 @@ export class ContactService {
   parseDto(contact: Contact){
     const avatarDto: ResizeImagesDto = this.getAvatarDto(contact.avatar);
     const dto: contactDto = {
+      id:contact.id,
       first_name: contact.firstName,
       last_name: contact.lastName,
       summary: contact.summary,
@@ -66,6 +67,12 @@ export class ContactService {
       return this.db.collection(path, ref => ref.orderBy("timestamp").startAfter(lastVisible).limit(limit));
     }
   }
+
+  deleteContact(path: string): Promise<any> {
+    return this.db.doc(path).delete();
+  }
+
+
 }
 
 

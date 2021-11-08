@@ -6,6 +6,8 @@
     "node_modules/codelyzer"
   ],
   "rules": {
+    "rxjs-add": { "severity": "error" },
+    "rxjs-no-unused-add": { "severity": "error" },
     "deprecation": {
       "severity": "warning"
     },
@@ -79,9 +81,7 @@
       "single"
     ],
     "radix": true,
-    "semicolon": [
-      "always"
-    ],
+    "semicolon": [true, "always", "ignore-interfaces"],
     "triple-equals": [
       true,
       "allow-null-check"
